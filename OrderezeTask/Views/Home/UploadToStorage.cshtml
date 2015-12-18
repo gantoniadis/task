@@ -1,0 +1,21 @@
+﻿
+
+@{
+    ViewBag.Title = "UploadToStorage";
+}
+
+<h2>UploadToStorage</h2>
+
+    <form action="@Url.Action("Upload")" method="post" enctype="multipart/form-data">
+   
+        <label for="file">Filename:</label>
+        <input type="file" name="file" id="file" />
+      
+         <br />
+         <input type="submit" value="Submit" />
+    </form>
+
+   @foreach (var item in Model) {
+  
+       <img src="@item" alt="Alternate text"/>
+   }
