@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>Upload Image</h2>
+
+<p>
+    @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <label for="file">Upload Image:</label><br />
+        <input type="file" name="file" id="file" style="width: 100%;" /><br />
+        <input type="submit" value="Upload" />
+    }
+</p>
+
+<ul style="list-style-type:none;padding:0;">
+    @foreach (var item in Model)
+    {
+        <li>
+            <img src="@item" alt="images" width="100" height="100" />
+            <a id="@item" href="#" onclick="deleteImage('@item')">Delete</a>
+        </li>
+    }
+</ul>
+    
+<script>
+    function deleteImage(item) {
+        $.post("Home/DeleteImage", { Name: item }, function (data) {
+            window.location.href = "Home/Upload";
+            alert(data);
+        });
+    }
+</script>
